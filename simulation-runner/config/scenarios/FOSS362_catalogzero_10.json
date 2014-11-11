@@ -1,0 +1,13 @@
+{
+    "run_description": "Catalog Zero, 10 agents",
+    "is_long_running": true,
+    "nodes": [
+        {
+            "node_config": "FOSS362_catalogzero.json",
+            "num_instances": 1,
+            "ramp_up_duration_seconds": 10,
+            "num_repetitions": 5
+        }
+    ]
+}
+
