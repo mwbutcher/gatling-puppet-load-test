@@ -2,17 +2,17 @@ name := "gatling-puppet-agent-capture"
 
 version := "0.1.1-SNAPSHOT"
 
-scalaVersion := "2.9.2"
+scalaVersion := "2.10.2"
 
-libraryDependencies += "com.excilys.ebi.gatling" % "gatling-recorder" % "1.5.1" exclude("org.scala-lang", "scala-compiler")
+libraryDependencies += "io.gatling" % "gatling-recorder" % "2.0.0-RC4" exclude("org.scala-lang", "scala-compiler")
 
-libraryDependencies += "com.excilys.ebi.gatling" % "gatling-app" % "1.5.1"
+libraryDependencies += "io.gatling" % "gatling-app" % "2.0.0-RC4"
 
-libraryDependencies += "com.excilys.ebi.gatling.highcharts" % "gatling-charts-highcharts" % "1.5.1"
+libraryDependencies += "io.gatling.highcharts" % "gatling-charts-highcharts" % "2.0.0-RC4"
 
 resolvers += "Excilys" at "http://repository.excilys.com/content/groups/public"
 
-mainClass in (Compile, run) := Some("com.excilys.ebi.gatling.recorder.GatlingRecorder")
+mainClass in (Compile, run) := Some("io.gatling.recorder.GatlingRecorder")
 
 fork := true
 

@@ -1,13 +1,16 @@
 package com.puppetlabs.gatling.config
 
+import javax.jms.IllegalStateException
+
 import scala.util.parsing.json.JSON
 import com.puppetlabs.json._
 import com.puppetlabs.gatling.runner.SimulationWithScenario
 import java.io.File
 
+
 class PuppetGatlingConfig(configFilePath: String) {
 
-  private val Some(JsonMap(config)) = JSON.parseFull(io.Source.fromFile(configFilePath).mkString)
+  private val Some(JsonMap(config)) = JSON.parseFull(scala.io.Source.fromFile(configFilePath).mkString)
 
   private val JsonList(jsonNodes) = config("nodes")
 
@@ -27,7 +30,7 @@ class PuppetGatlingConfig(configFilePath: String) {
     // stupid way
     val nodeConfigFile = new File(new File(configFilePath).getParentFile.getAbsolutePath + "/../nodes/" + nodeConfigPath).getAbsolutePath
 
-    val Some(JsonMap(nodeConfig)) = JSON.parseFull(io.Source.fromFile(nodeConfigFile).mkString)
+    val Some(JsonMap(nodeConfig)) = JSON.parseFull(scala.io.Source.fromFile(nodeConfigFile).mkString)
     val JsonString(simClass) = nodeConfig("simulation_class")
 
     Node(Class.forName(simClass).asInstanceOf[Class[SimulationWithScenario]], numRepetitions, numInstances, rampUpDuration)

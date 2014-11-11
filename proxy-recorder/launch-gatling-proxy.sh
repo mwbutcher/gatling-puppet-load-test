@@ -94,11 +94,11 @@ of empty textboxes for request and response data.  Cool.
 The last step is to run your puppet agent, pointed at the proxy.  To do that,
 simply log in to your agent box and run a command like this:
 
-    puppet agent --test --http_proxy_host=<this machine's hostname or IP> --http_proxy_port=8001
+    puppet agent --test --http_proxy_host=<this machine's hostname or IP> --http_proxy_port=8000
 
 You should see some requests appear in the Gatling proxy window.  Once the
 agent run completes, click on the 'Stop & Save' button in Gatling, and then
-close the Gatling proxy window.
+close the Gatling proxy window. 
 PRESS ENTER"
 read
 

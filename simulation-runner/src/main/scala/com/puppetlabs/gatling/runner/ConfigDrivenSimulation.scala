@@ -1,12 +1,20 @@
 package com.puppetlabs.gatling.runner
 
-import com.excilys.ebi.gatling.core.scenario.configuration.Simulation
-import com.excilys.ebi.gatling.core.Predef._
-import com.excilys.ebi.gatling.http.Predef._
-import akka.util.duration._
-import bootstrap._
+import io.gatling.core.Predef._
+import io.gatling.core.scenario.Simulation
+import io.gatling.core.session
+import io.gatling.http.Predef._
 import com.puppetlabs.gatling.config.PuppetGatlingConfig
-import com.excilys.ebi.gatling.core.structure.{ChainBuilder}
+import io.gatling.core.scenario.Simulation
+import io.gatling.core.structure.{ScenarioBuilder, PopulatedScenarioBuilder, ChainBuilder}
+import scala.util.{Try, Success, Failure}
+
+
+import scala.util.Try
+
+
+//import com.excilys.ebi.gatling.core.structure.{ChainBuilder}
+import io.gatling.core.structure.{PopulatedScenarioBuilder, ChainBuilder}
 
 /**
  * This class is the "main" Simulation class that we'll always point
@@ -32,32 +40,33 @@ class ConfigDrivenSimulation extends Simulation {
     // Here we've replaced our "pause" with a Gatling "session function",
     // which basically just sets a session variable to check to see if
     // we are on the final repetition, and if not, sleep for 30 mins.
+    val sleepDuration = 1800    // 30 minutes
     chain.exec((session: Session) => {
-      val repetitionCount = session.getAttributeAsOption[Int](REPETITION_COUNTER).getOrElse(0) + 1
-      println("Agent " + session.userId +
-        " completed " + repetitionCount + " of " + totalNumReps + " repetitions.")
-      session.setAttribute(REPETITION_COUNTER, repetitionCount)
-    }).doIf((session) => session.getTypedAttribute[Int](REPETITION_COUNTER) < totalNumReps) {
+      val repetitionCount = session(REPETITION_COUNTER).asOption[Int].getOrElse(0) + 1
+            println("Agent " + session.userId + " completed " + repetitionCount + " of " + totalNumReps + " repetitions.")
+      session.set(REPETITION_COUNTER, repetitionCount)
+    }).doIf((session) => session(REPETITION_COUNTER).as[Int] < totalNumReps) {
       exec((session) => {
-        println("This is not the last repetition; sleeping.")
+                  println("This is not the last repetition; sleeping " + sleepDuration + ".")
         session
-      }).pause(30 minutes)
-    }.doIf((session) => session.getTypedAttribute[Int](REPETITION_COUNTER) >= totalNumReps) {
+      }).pause(sleepDuration)
+    }.doIf((session) => session(REPETITION_COUNTER).as[Int] >= totalNumReps) {
       exec((session) => {
-        println("That was the last repetition.  Not sleeping.")
+                 println("That was the last repetition. Not sleeping.")
         session
       })
     }
   }
 
+
   val config = PuppetGatlingConfig.configuration
 
-  val httpConf = httpConfig
+  val httpConf = http
     .baseURL(config.baseUrl)
     .acceptHeader("pson, b64_zlib_yaml, yaml, raw")
     .connection("close")
 
-  val scns = config.nodes.map(node => {
+  val scns: List[PopulatedScenarioBuilder] = config.nodes.map(node => {
 
     import node._
 
@@ -85,10 +94,9 @@ class ConfigDrivenSimulation extends Simulation {
         group((session) => simulationClass.getSimpleName) {
           chainWithLongRunning
         }
-      }.users(numInstances)
-      .ramp(rampUpDuration)
-      .protocolConfig(httpConf)
+      }.inject(rampUsers(numInstances) over (rampUpDuration))
+    .protocols(httpConf)
   })
 
-  scns.foreach(setUp(_))
+  scns.foreach(scn => setUp(scn))
 }

@@ -2,7 +2,7 @@ name := "gatling-puppet-load-test"
 
 version := "0.1.1-SNAPSHOT"
 
-scalaVersion := "2.9.2"
+scalaVersion := "2.10.2"
 
 net.virtualvoid.sbt.graph.Plugin.graphSettings
 
@@ -10,9 +10,9 @@ resolvers ++= Seq(
                   "Excilys" at "http://repository.excilys.com/content/groups/public"
                   )
 
-libraryDependencies += "com.excilys.ebi.gatling" % "gatling-app" % "1.5.6"
+libraryDependencies += "io.gatling" % "gatling-app" % "2.0.0-RC4"
 
-libraryDependencies += "com.excilys.ebi.gatling.highcharts" % "gatling-charts-highcharts" % "1.5.6" exclude("com.excilys.ebi.gatling", "gatling-recorder")
+libraryDependencies += "io.gatling.highcharts" % "gatling-charts-highcharts" % "2.0.0-RC4" exclude("io.gatling", "gatling-recorder")
 
 mainClass in (Compile, run) := Some("com.puppetlabs.gatling.runner.PuppetGatlingRunner")
 
