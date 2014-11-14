@@ -4,9 +4,9 @@
     "nodes": [
         {
             "node_config": "FOSS362_catalogzero.json",
-            "num_instances": 1,
-            "ramp_up_duration_seconds": 10,
-            "num_repetitions": 5
+            "num_instances": 1000,
+            "ramp_up_duration_seconds": 1800,
+            "num_repetitions": 2
         }
     ]
 }
