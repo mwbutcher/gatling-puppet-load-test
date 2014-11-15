@@ -9,7 +9,7 @@
     "ip": "10.32.177.60"
   },
   "steps": [
-    {"install": "3.4"},
+    {"install": "3.7"},
     {"simulate": {
         "id": "testing",
         "scenario": {
