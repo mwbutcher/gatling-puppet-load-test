@@ -60,7 +60,7 @@ module Puppet
 
         unless ENV["ERG_MODE"] # Don't run restart or classify during ERG testing
           run "pe_restart.sh", @settings[:systest_config], @settings[:ssh_keyfile]
-          run "pe_classify.sh", filename, @settings[:systest_config], @settings[:ssh_keyfile], sim_id
+         # run "pe_classify.sh", filename, @settings[:systest_config], @settings[:ssh_keyfile], sim_id
         end
 
         # Grab certs from the master and use them for 4096-bit crypto connections
