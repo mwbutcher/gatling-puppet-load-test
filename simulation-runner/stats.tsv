@@ -1,0 +1,10 @@
+name	nbRequest	nbRequestOK	nbRequestKO	minResponseTime	minResponseTimeOK	minResponseTimeKO	maxResponseTime	maxResponseTimeOK	maxResponseTimeKO	meanResponseTime	meanResponseTimeOK	meanResponseTimeKO	deviation	deviationOK	deviationKO	percentile1	percentile1OK	percentile1KO	percentile2	percentile2OK	percentile2KO	group1Name	group1Count	group1Percentage	group2Name	group2Count	group2Percentage	group3Name	group3Count	group3Percentage	group4Name	group4Count	group4Percentage	meanNumberOfRequestsPerSecond	meanNumberOfRequestsPerSecondOK	meanNumberOfRequestsPerSecondKO
+Global Information	54000	54000	0	60	60	-1	1110	1110	-1	93	93	-1	82	82	-1	120	120	-1	160	160	-1	t < 800 ms	53500	99	800 ms < t < 1200 ms	500	0	t > 1200 ms	0	0	failed	0	0	53	53	-1
+FOSS360rc_CatalogZero	500	500	0	27290	27290	-1	28710	28710	-1	27828	27828	-1	173	173	-1	28240	28240	-1	28550	28550	-1	t < 800 ms	0	0	800 ms < t < 1200 ms	0	0	t > 1200 ms	500	100	failed	0	0	0	0	-1
+FOSS360rc_CatalogZero / node	500	500	0	70	70	-1	350	350	-1	92	92	-1	16	16	-1	120	120	-1	130	130	-1	t < 800 ms	500	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+FOSS360rc_CatalogZero / filemeta	51500	51500	0	60	60	-1	170	170	-1	85	85	-1	10	10	-1	110	110	-1	130	130	-1	t < 800 ms	51500	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	50	50	-1
+FOSS360rc_CatalogZero / catalog	500	500	0	70	70	-1	160	160	-1	106	106	-1	18	18	-1	140	140	-1	150	150	-1	t < 800 ms	500	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+FOSS360rc_CatalogZero / report	500	500	0	850	850	-1	1110	1110	-1	930	930	-1	40	40	-1	1000	1000	-1	1040	1040	-1	t < 800 ms	0	0	800 ms < t < 1200 ms	500	100	t > 1200 ms	0	0	failed	0	0	0	0	-1
+FOSS360rc_CatalogZero / filemeta plugins	500	500	0	100	100	-1	200	200	-1	135	135	-1	13	13	-1	160	160	-1	180	180	-1	t < 800 ms	500	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+FOSS360rc_CatalogZero / filemeta plugin facts	500	500	0	60	60	-1	150	150	-1	85	85	-1	16	16	-1	110	110	-1	130	130	-1	t < 800 ms	500	100	800 ms < t < 1200 ms	0	0	t > 1200 ms	0	0	failed	0	0	0	0	-1
+
