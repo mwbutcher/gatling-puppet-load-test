@@ -18,8 +18,8 @@
           "nodes": [
             {
               "node_config": "FOSS362_catalogzero.json",
-              "num_instances": 25,
-              "ramp_up_duration_seconds": 80,
+              "num_instances": 5,
+              "ramp_up_duration_seconds": 5,
               "num_repetitions": 1
             }
           ]
